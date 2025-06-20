@@ -283,7 +283,9 @@ order by lifetime_value desc
 limit 10;
 
 
---- ---
+--- TIME SERIES AND TRENDS ---
+-- 1. Monthly trends in orders and revenue
+
 select 
   date_format(o.order_purchase_timestamp, '%y-%m') as month,
   count(distinct o.order_id) as orders_count,
@@ -293,6 +295,7 @@ join orderitems oi on o.order_id = oi.order_id
 group by month
 order by month;
 
+-- 2. Peak sales months and days of the week
 
 select 
   date_format(o.order_purchase_timestamp, '%y-%m') as month,
@@ -308,6 +311,7 @@ from orders o
 group by day_of_week
 order by orders_count desc;
 
+-- 3. Change in average order value over time
 
 select 
   date_format(o.order_purchase_timestamp, '%y-%m') as month,
@@ -317,6 +321,7 @@ join orderitems oi on o.order_id = oi.order_id
 group by month
 order by month;
 
+-- 4. Shift in payment method preferences
 
 select 
   date_format(o.order_purchase_timestamp, '%y-%m') as month,
@@ -327,7 +332,7 @@ join orders o on p.order_id = o.order_id
 group by month, p.payment_type
 order by month;
 
-
+-- 5. Products growing in popularity over time
 select 
   date_format(o.order_purchase_timestamp, '%y-%m') as month,
   oi.product_id,
