@@ -4,6 +4,11 @@ This project performs detailed analysis on an e-commerce dataset using SQL. It s
 
 ---
 
+## Entity Relationship Diagram
+<img width="741" alt="ERD" src="https://github.com/user-attachments/assets/2739c408-1bcf-4442-bf30-ade0bcb15ad0" />
+
+---
+
 ## Dataset Overview
 
 The project uses 5 main CSV files:
