@@ -217,7 +217,8 @@ group by p.product_category_name
 order by avg_shippingcharge desc;
 
 
---- ---
+--- CUSTOMER BEHAVIOUR ANALYSIS ---
+--1. Who are our top spending and most loyal customers?
 
 select o.customer_id,count(distinct o.order_id) as total_orders,
 sum(oi.price + oi.shipping_charges) as total_spent
@@ -227,6 +228,7 @@ group by o.customer_id
 order by total_spent desc
 limit 10;
 
+-- 2. What percentage of customers are repeat buyers?
 
 select 
   round(
@@ -241,6 +243,7 @@ from (
   group by customer_id
 ) as customer_orders;
 
+--3. Which states or cities have the highest average order value?
 
 select 
   c.customer_state,
@@ -253,6 +256,7 @@ group by c.customer_state, c.customer_city
 order by avg_order_value desc
 limit 10;
 
+--4. How does customer behavior differ across regions?
 
 select 
   c.customer_state,
@@ -265,6 +269,7 @@ group by c.customer_state
 order by order_volume desc, avg_shipping_cost desc
 limit 10;
 
+-- 5. What is the lifetime value of each customer?
 
 select 
   c.customer_id,
@@ -278,6 +283,7 @@ order by lifetime_value desc
 limit 10;
 
 
+--- ---
 select 
   date_format(o.order_purchase_timestamp, '%y-%m') as month,
   count(distinct o.order_id) as orders_count,
