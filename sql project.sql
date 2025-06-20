@@ -114,6 +114,7 @@ set sql_safe_updates = 1;
 
 
 --SUMMARIZING QUESTIONS
+--1. 
 select count(distinct o.order_id) as total_orders,
 count(distinct o.customer_id) as total_customers,
 sum(oi.price + oi.shipping_charges) as total_revenue
