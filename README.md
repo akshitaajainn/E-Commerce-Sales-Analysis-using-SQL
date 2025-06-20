@@ -5,7 +5,8 @@ This project performs detailed analysis on an e-commerce dataset using SQL. It s
 ---
 
 ## Entity Relationship Diagram
-<img width="741" alt="ERD" src="https://github.com/user-attachments/assets/2739c408-1bcf-4442-bf30-ade0bcb15ad0" />
+<img width="728" alt="ERD" src="https://github.com/user-attachments/assets/ea3be95a-1bf7-4631-a4ed-5dab7f3fecca" />
+
 
 ---
 
