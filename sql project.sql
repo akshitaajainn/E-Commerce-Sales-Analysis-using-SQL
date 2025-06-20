@@ -145,12 +145,15 @@ select avg(shipping_charges)as avg_shipping_charge, avg(price+shipping_charges)a
 from orderitems;
 
 -- 5. Which payment methods are most used by customers?
+
 select payment_type, count(*) as payment_count
 from payments
 group by payment_type
 order by payment_count desc;
 
+
 ---- SALES AND PRODUCT PERFORMANCE ---
+-- 6. Which are the top 10 best selling products by quantity sold?
 
 select product_id,product_id
 from orderitems
@@ -158,13 +161,16 @@ group by product_id
 order by total_units_sold desc
 limit 10;
 
-
+-- 7. Which products generated the highest total revenue?
+  
 select*from orderitems;
 select product_id, sum(shipping_charges+ price) as revenue
 from orderitems
 group by product_id
 order by revenue desc;
 
+
+--8. What products are frequently ordered together?
 
 select oi1.product_id as prod_a, oi2.product_id as prod_b, count(distinct oi1.order_id) as times_ordered_together
 from orderitems oi1
@@ -174,6 +180,7 @@ aND oi1.product_id < oi2.product_id
 group by prod_a, prod_b
 ORDER BY times_ordered_together desc;
 
+--9. What are the top 5 sellers by total revenue and how does their average price compare to others?
 
 select seller_id, sum(price+shipping_charges)as total_revenue, avg(price) as avg_price
 from orderitems
@@ -200,7 +207,7 @@ union all
 select * from others
 order by total_rev desc;
 
-
+-- 10. Which product categories have the highest shipping costs and do they correspond with high revenue?
 select p.product_category_name,
 avg(oi.shipping_charges)as avg_shippingcharge,
 sum(oi.price+oi.shipping_charges) as revenue
@@ -210,7 +217,7 @@ group by p.product_category_name
 order by avg_shippingcharge desc;
 
 
-
+--- ---
 
 select o.customer_id,count(distinct o.order_id) as total_orders,
 sum(oi.price + oi.shipping_charges) as total_spent
