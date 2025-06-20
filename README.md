@@ -44,7 +44,9 @@ The analysis answers real-world business questions in three categories:
 
 ### 2. Sales and Product Performance
 
-- What products are freqyently ordered together?
+- Which are the top 10 best selling products by quantity sold?
+- Which products generated the highest total revenue?
+- What products are frequently ordered together?
 - What are the top 5 sellers by total revenue and how does their average price compare to others?
 - Which product categories have the highest shipping costs and do they correspond with high revenue?
 
