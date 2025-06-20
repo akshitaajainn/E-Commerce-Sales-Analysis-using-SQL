@@ -58,7 +58,7 @@ The analysis answers real-world business questions in three categories:
 - How does customer behavior differ across regions?
 - What is the lifetime value of each customer?
 
-### 4. Time-Series and Trends
+### 4. Time Series and Trends
 
 - Monthly trends in orders and revenue
 - Peak sales months and days of the week
