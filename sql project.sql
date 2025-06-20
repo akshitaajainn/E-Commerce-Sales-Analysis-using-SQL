@@ -113,14 +113,16 @@ where product_category_name = 'Uncategorized';
 set sql_safe_updates = 1;
 
 
---SUMMARIZING QUESTIONS
---1. 
+--- SUMMARIZING QUESTIONS ---
+-- 1. What is our total revenue, number of customers, and number of orders?
+
 select count(distinct o.order_id) as total_orders,
 count(distinct o.customer_id) as total_customers,
 sum(oi.price + oi.shipping_charges) as total_revenue
 from orders o
 join orderitems oi on o.order_id = oi.order_id;
 
+-- 2. Which 5 product categories bring in the highest revenue?
 
 select p.product_category_name, sum(oi.price + oi.shipping_charges) as total_revenue
 from orderitems oi
@@ -129,6 +131,7 @@ group by p.product_category_name
 order by total_revenue desc
 limit 5;
 
+-- 3. Which states or cities have the highest  number of customers?
 
 select customer_state,customer_city, count(*) as customer_count
 from customers
@@ -136,15 +139,19 @@ group by customer_state,customer_city
 order by customer_count desc
 limit 10;
 
+-- 4. What is the average order value and average shipping charge?
+
 select avg(shipping_charges)as avg_shipping_charge, avg(price+shipping_charges)as avg_order_value
 from orderitems;
 
+-- 5. Which payment methods are most used by customers?
 select payment_type, count(*) as payment_count
 from payments
 group by payment_type
 order by payment_count desc;
 
-----sales_and_product_performance---
+---- SALES AND PRODUCT PERFORMANCE ---
+
 select product_id,product_id
 from orderitems
 group by product_id
