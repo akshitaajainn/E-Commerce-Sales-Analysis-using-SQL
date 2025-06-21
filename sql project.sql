@@ -191,18 +191,12 @@ limit 10;
 
 -- 2. What percentage of customers are repeat buyers?
 
-select 
-  round(
-    sum(case when order_count > 1 then 1 else 0 end) 
-    / count(*) * 100, 2
-  ) as repeat_buyer_pct
-from (
-  select 
-    customer_id, 
-    count(distinct order_id) as order_count
-  from orders
-  group by customer_id
-) as customer_orders;
+select round(sum(case when order_count > 1 then 1 else 0 end)
+  / count(*) * 100, 2) as repeat_buyer_pct
+from (select customer_id,count(distinct order_id) as order_count
+from orders
+group by customer_id) as customer_orders;
+
 
 --3. Which states or cities have the highest average order value?
 
