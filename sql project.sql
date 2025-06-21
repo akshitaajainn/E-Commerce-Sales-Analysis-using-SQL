@@ -211,10 +211,8 @@ limit 10;
 
 --4. How does customer behavior differ across regions?
 
-select 
-  c.customer_state,
-  count(distinct o.order_id) as order_volume,
-  round(avg(oi.shipping_charges), 2) as avg_shipping_cost
+select c.customer_state,count(o.order_id) as order_volume,
+  round(avg(oi.shipping_charges),2) as avg_shipping_cost
 from customers c
 join orders o on c.customer_id = o.customer_id
 join orderitems oi on o.order_id = oi.order_id
