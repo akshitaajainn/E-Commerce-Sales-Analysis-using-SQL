@@ -200,9 +200,7 @@ group by customer_id) as customer_orders;
 
 --3. Which states or cities have the highest average order value?
 
-select 
-  c.customer_state,
-  c.customer_city,
+select c.customer_state,c.customer_city,
   round(avg(oi.price + oi.shipping_charges), 2) as avg_order_value
 from customers c
 join orders o on c.customer_id = o.customer_id
