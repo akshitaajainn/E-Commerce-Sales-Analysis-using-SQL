@@ -1,45 +1,6 @@
 CREATE DATABASE ecommerce_db;
 USE ecommerce_db;
 
-create table customers(
-customer_id varchar(50) primary key,
-customer_zip_code_prefix int,
-customer_city varchar(100),
-customer_state varchar(50));
-
-create table orders(order_id varchar(50) primary key,
-customer_id varchar(50),
-order_purchase_timestamp timestamp,
-order_approved_at timestamp,
-foreign key (customer_id) references customers(customer_id));
-
-create table orderitems (order_id varchar(50),
-foreign key (order_id) references orders(order_id),
-product_id varchar(50),
-seller_id varchar(50),
-price float,
-shipping_charges float);
-
-create table products(product_id varchar(50) primary key,
-product_category_name varchar(100),
-product_weight_g float,
-product_length_cm float,
-product_height_cm float,
-product_width_cm float);
-
-create table payments(order_id varchar(50),
-foreign key (order_id) references orders(order_id),
-payment_sequential int,
-payment_type varchar(50),
-payment_installments int,
-payment_value float);
-
-drop table customers;
-drop table orderitems;
-drop table orders;
-drop table payments;
-drop table products;
-
 alter table df_customers
 rename to customers;
 
